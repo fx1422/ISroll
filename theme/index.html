@@ -24,7 +24,14 @@
     </ul>
 </div>
 <div class="tab">
-    <a href=""><div class="item">item</div></a><a href=""><div class="item">item</div></a><a href=""><div class="item">item</div></a><a href=""><div class="item">item</div>
+    <a href="">
+        <div class="item">item</div>
+    </a><a href="">
+    <div class="item">item</div>
+</a><a href="">
+    <div class="item">item</div>
+</a><a href="">
+    <div class="item">item</div>
 </a>
 </div>
 <div id="toTop">ToP</div>
@@ -36,30 +43,28 @@
 <script src="libs/swiper.min.js"></script>
 
 <script>
-    //全部文档之前加载完毕执行
     var myScroll;
+    //全部文档之前加载完毕执行,和jQuery有区别的
     window.onload = function () {
-        myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true,snap: true });
-        myScroll.on('scrollEnd',function () {
-            console.info(this.x)
+        myScroll = new IScroll('#wrapper', {mouseWheel: true, click: true, snap: true});
+        myScroll.on('scrollEnd', function () {
+            // console.info(this.x)
         })
     }
-   $(function () {
-       appendData();
-       appendList(30);
-
-
-       $("#wrapper ul li").on('click',function () {
-           console.info($(this).index())
-       });
-       $("#toTop").on('click',function () {
-           //滚动到指定元素
-        // myScroll.scrollToElement('#wrapper ul li:nth-child(11)');
-           //滚动到下一页、上一页
-           myScroll.next();
-          // myScroll.prev();
-       })
-   })
+    $(function () {
+        appendData();
+        appendList(30);
+        $("#wrapper ul li").on('click', function () {
+            console.info($(this).index())
+        });
+        $("#toTop").on('click', function () {
+            //滚动到指定元素
+            // myScroll.scrollToElement('#wrapper ul li:nth-child(11)');
+            //滚动到下一页、上一页
+            myScroll.next();
+            // myScroll.prev();
+        })
+    })
 
     function appendData() {
         var list = '', box = $(".box ul");
