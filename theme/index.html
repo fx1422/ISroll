@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <ul>
+
+        </ul>
+    </div>
+
+</div>
+<div id="wrapper">
+    <ul>
+
+    </ul>
+</div>
+<div class="tab">
+    <a href=""><div class="item">item</div></a><a href=""><div class="item">item</div></a><a href=""><div class="item">item</div></a><a href=""><div class="item">item</div>
+</a>
+</div>
+<div id="toTop">ToP</div>
+</body>
+</html>
+<script src="libs/jquery-1.11.3.js"></script>
+<script src="libs/iscroll.js"></script>
+<script src="libs/app.js"></script>
+<script src="libs/swiper.min.js"></script>
+
+<script>
+    //全部文档之前加载完毕执行
+    var myScroll;
+    window.onload = function () {
+        myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true,snap: true });
+        myScroll.on('scrollEnd',function () {
+            console.info(this.x)
+        })
+    }
+   $(function () {
+       appendData();
+       appendList(30);
+
+
+       $("#wrapper ul li").on('click',function () {
+           console.info($(this).index())
+       });
+       $("#toTop").on('click',function () {
+           //滚动到指定元素
+        // myScroll.scrollToElement('#wrapper ul li:nth-child(11)');
+           //滚动到下一页、上一页
+           myScroll.next();
+          // myScroll.prev();
+       })
+   })
+
+    function appendData() {
+        var list = '', box = $(".box ul");
+        for (var i = 0; i < 20; i++) {
+            list += '<li><div>this is ' + i + 'list</div></li>';
+        }
+        box.empty().append(list);
+    }
+
+    function appendList(length) {
+        var list = '', box = $("#wrapper").find('ul');
+        for (var i = 0; i < length; i++) {
+            list += '<li><div>this is ' + i + 'wrapper</div></li>';
+        }
+        box.empty().append(list);
+    }
+</script>
